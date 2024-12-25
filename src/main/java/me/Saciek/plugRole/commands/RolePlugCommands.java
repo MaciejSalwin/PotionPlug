@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class RolePlugCommands implements CommandExecutor {
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String labelif, String[] strings) {
         if(!(sender instanceof Player))
@@ -19,6 +20,21 @@ public class RolePlugCommands implements CommandExecutor {
             ItemStack emeralds = new ItemStack(Material.EMERALD);
             if(player.getInventory().containsAtLeast(emeralds, 64)){
                 player.sendMessage(ChatColor.GREEN + "The UberPotion is in your inventory!");
+                int emeraldToRemove = 64;
+                ItemStack[] itemsInInventory = player.getInventory().getContents();
+                for(ItemStack item : itemsInInventory){
+                    if(item != null && item.getType() == Material.EMERALD){
+                        int currentEmeraldCountInInventory = item.getAmount();
+                        if(currentEmeraldCountInInventory > emeraldToRemove){
+                            int removedEmeralds = (currentEmeraldCountInInventory - emeraldToRemove);
+                            item.setAmount(removedEmeralds);
+                            break;
+                        }else{
+                            emeraldToRemove -= currentEmeraldCountInInventory;
+                            item.setAmount(0);
+                        }
+                    }
+                }
             }else{
                 player.sendMessage(ChatColor.RED + "You don't have enought emeralds in your inventory - You need 64 emeralds");
             }
