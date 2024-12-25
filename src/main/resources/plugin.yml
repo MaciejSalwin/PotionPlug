@@ -1,0 +1,11 @@
+name: PlugRole
+version: '1.0-SNAPSHOT'
+main: me.Saciek.plugRole.PlugRole
+api-version: '1.20'
+authors: [ Saciek ]
+description: Plugin that gives Roles to players
+commands:
+  Potion:
+    description: This commands check if the Player has 64 emeralds to get a potion that give x2 for all enchants that player has.
+    usage: /<command>
+    aliases: [EnchantPotion, x2Potion, UberPotion]
