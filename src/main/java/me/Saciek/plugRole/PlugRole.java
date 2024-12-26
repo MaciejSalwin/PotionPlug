@@ -1,5 +1,4 @@
 package me.Saciek.plugRole;
-
 import me.Saciek.plugRole.commands.RolePlugCommands;
 import me.Saciek.plugRole.event.EnchantPotionEvent;
 import me.Saciek.plugRole.items.ItemManager;
@@ -18,7 +17,6 @@ public final class PlugRole extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EnchantPotionEvent(), this);
         getCommand("Potion").setExecutor(command);
     }
-
     @Override
     public void onDisable() {
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "[RolePlug] - is turned Off");
