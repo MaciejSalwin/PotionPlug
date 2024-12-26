@@ -18,10 +18,10 @@ public class ItemManager {
     private static void createEnchantPotion(){
         ItemStack item = new ItemStack(Material.HONEY_BOTTLE, 1);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName("§6Potion of Endless Desire");
+        meta.setDisplayName("§6Miners Potion");
         List<String> lore = new ArrayList<>();
-        lore.add("§8This Potion will give you 0.3 boost in all your enchantments for 1 hour.");
-        lore.add("§8After this time you will have to wait 24 hours for next use");
+        lore.add("§8This potion will give you boost to your mining skills for 1 hour");
+        lore.add("§8after that you will have to wait 1.5 hour to use miners potion again");
         meta.setLore(lore);
         meta.addEnchant(Enchantment.LUCK, 1,false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);

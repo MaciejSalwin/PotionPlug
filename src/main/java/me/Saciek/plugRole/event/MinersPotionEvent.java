@@ -9,15 +9,17 @@ import org.bukkit.potion.PotionEffectType;
 
 import static me.Saciek.plugRole.items.ItemManager.EnchantPotion;
 
-public class EnchantPotionEvent implements Listener {
+public class MinersPotionEvent implements Listener {
 
         @EventHandler
         public static void afterDrank(PlayerInteractEvent event){
             ItemStack potion = event.getItem();
             if (potion != null && potion.isSimilar(EnchantPotion)){
                 event.getPlayer().getInventory().removeItem(EnchantPotion);
-                event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "You Got - SPEED ENCHANTMENT FOR NEXT 1 HOUR");
-                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600, 1));
+                event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "You Got - MinerPotion");
+                event.getPlayer().addPotionEffect((new PotionEffect(PotionEffectType.FAST_DIGGING, 72000 , 0)));
+                event.getPlayer().addPotionEffect((new PotionEffect(PotionEffectType.NIGHT_VISION, 72000 , 0)));
+                event.getPlayer().addPotionEffect((new PotionEffect(PotionEffectType.LUCK, 72000 , 0)));
             }
         }
     }
