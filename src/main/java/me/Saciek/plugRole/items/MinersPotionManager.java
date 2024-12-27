@@ -7,9 +7,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemManager {
+public class MinersPotionManager {
 
-    public static ItemStack EnchantPotion;
+    public static ItemStack MinersPotion;
 
     public static void innit() {
         createEnchantPotion();
@@ -27,6 +27,6 @@ public class ItemManager {
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         item.setItemMeta(meta);
-        EnchantPotion = item;
+        MinersPotion = item;
     }
 }

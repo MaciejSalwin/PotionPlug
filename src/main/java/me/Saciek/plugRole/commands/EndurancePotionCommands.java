@@ -1,5 +1,6 @@
 package me.Saciek.plugRole.commands;
 
+import me.Saciek.plugRole.items.EndurancePotionManager;
 import me.Saciek.plugRole.items.MinersPotionManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -10,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class MinersPotionCommands implements CommandExecutor {
+public class EndurancePotionCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -20,7 +21,7 @@ public class MinersPotionCommands implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (cmd.getName().equalsIgnoreCase("MinersPotion")) {
+        if (cmd.getName().equalsIgnoreCase("EndurancePotion")) {
             Inventory inventory = player.getInventory();
             boolean hasFreeSlot = false;
             for (int i = 0; i < 36; i++) {
@@ -35,16 +36,16 @@ public class MinersPotionCommands implements CommandExecutor {
                 return true;
             }
 
-            ItemStack emeralds = new ItemStack(Material.EMERALD);
-            if (!inventory.containsAtLeast(emeralds, 12)) {
-                player.sendMessage(ChatColor.RED + "You don't have enough emeralds in your inventory. You need 12 emeralds.");
+            ItemStack gold = new ItemStack(Material.GOLD_INGOT);
+            if (!inventory.containsAtLeast(gold, 32)) {
+                player.sendMessage(ChatColor.RED + "You don't have enough gold in your inventory. You need 32 gold.");
                 return true;
             }
 
-            emeralds.setAmount(12);
-            inventory.removeItem(emeralds);
-            inventory.addItem(MinersPotionManager.MinersPotion);
-            player.sendMessage(ChatColor.GREEN + "The MinersPotion has been added to your inventory!");
+            gold.setAmount(32);
+            inventory.removeItem(gold);
+            inventory.addItem(EndurancePotionManager.EndurancePotion);
+            player.sendMessage(ChatColor.GREEN + "The EndurancePotion has been added to your inventory!");
             return true;
         }
 

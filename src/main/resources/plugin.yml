@@ -5,7 +5,15 @@ api-version: '1.20'
 authors: [ Saciek ]
 description: Plugin that gives Roles to players
 commands:
-  Potion:
-    description: This commands check if the Player has 64 emeralds to get a potion that give x2 for all enchants that player has.
+  MinersPotion:
+    description: This commands check if Player has 12 emeralds to get a potion that give basic effects for miners such as haste.
     usage: /<command>
-    aliases: [EnchantPotion, x2Potion, UberPotion]
+    aliases: [PotionForMining, x2Potion, UberPotion]
+  EndurancePotion:
+    description: This commands check if Player has 32 gold to get a potion that give basic endurance effects such as speed etc.
+    usage: /<command>
+    aliases: [EndurancePotion, PotionOfEndurance]
+  help_potion:
+    description: Gives a simple description on how to use all plugin commands
+    usage: /<command>
+    aliases: [help_potionPlug, potion_help]
