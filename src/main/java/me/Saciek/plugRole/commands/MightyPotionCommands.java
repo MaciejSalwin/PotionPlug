@@ -1,5 +1,6 @@
 package me.Saciek.plugRole.commands;
 
+import me.Saciek.plugRole.items.MightyPotionManager;
 import me.Saciek.plugRole.items.MinersPotionManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -12,11 +13,11 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class MinersPotionCommands implements CommandExecutor {
+public class MightyPotionCommands implements CommandExecutor {
 
     private final HashMap<UUID, Long> cooldown;
 
-    public MinersPotionCommands() {
+    public MightyPotionCommands() {
         this.cooldown = new HashMap<>();
     }
 
@@ -31,7 +32,7 @@ public class MinersPotionCommands implements CommandExecutor {
 
             this.cooldown.put(player.getUniqueId(), System.currentTimeMillis());
 
-            if (cmd.getName().equalsIgnoreCase("MinersPotion")) {
+            if (cmd.getName().equalsIgnoreCase("MightyPotion")) {
                 Inventory inventory = player.getInventory();
                 boolean hasFreeSlot = false;
                 for (int i = 0; i < 36; i++) {
@@ -46,16 +47,16 @@ public class MinersPotionCommands implements CommandExecutor {
                     return true;
                 }
 
-                ItemStack emeralds = new ItemStack(Material.EMERALD);
-                if (!inventory.containsAtLeast(emeralds, 12)) {
-                    player.sendMessage(ChatColor.RED + "You don't have enough emeralds in your inventory. You need 12 emeralds.");
+                ItemStack diamonds = new ItemStack(Material.DIAMOND);
+                if (!inventory.containsAtLeast(diamonds, 15)) {
+                    player.sendMessage(ChatColor.RED + "You don't have enough diamonds in your inventory. You need 15 diamonds.");
                     return true;
                 }
 
-                emeralds.setAmount(12);
-                inventory.removeItem(emeralds);
-                inventory.addItem(MinersPotionManager.MinersPotion);
-                player.sendMessage(ChatColor.GREEN + "The MinersPotion has been added to your inventory!");
+                diamonds.setAmount(15);
+                inventory.removeItem(diamonds);
+                inventory.addItem(MightyPotionManager.MightyPotion);
+                player.sendMessage(ChatColor.GREEN + "The MightyPotion has been added to your inventory!");
                 return true;
 
             }
@@ -64,11 +65,11 @@ public class MinersPotionCommands implements CommandExecutor {
             long seconds = (3_600_000 - timeElapsed) /1000;
             long minutes = (seconds)/ 60;
             if(seconds > 60) {
-                player.sendMessage(ChatColor.RED + "You have to wait " + minutes + " minutes to buy MinersPotion again");
+                player.sendMessage(ChatColor.RED + "You have to wait " + minutes + " minutes to buy MightyPotion again");
             }else{
-                player.sendMessage(ChatColor.RED + "You have to wait " + seconds + " secounds to buy MinersPotion again");
+                player.sendMessage(ChatColor.RED + "You have to wait " + seconds + " secounds to buy MightyPotion again");
             }
         }
         return true;
-        }
     }
+}

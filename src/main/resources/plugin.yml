@@ -17,3 +17,8 @@ commands:
     description: Gives a simple description on how to use all plugin commands
     usage: /<command>
     aliases: [help_potionPlug, potion_help]
+  MightyPotion:
+    description: This commands check if Player has 15 Diamonds to get a potion that give basic strenght effects such as FireRes and DamageRes etc.
+    usage: /<command>
+    aliases: [mightypotion, potionmighty]
+

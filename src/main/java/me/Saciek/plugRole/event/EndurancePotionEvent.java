@@ -17,8 +17,8 @@ public class EndurancePotionEvent implements Listener {
         if (potion != null && potion.isSimilar(EndurancePotion)){
             event.getPlayer().getInventory().removeItem(EndurancePotion);
             event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "You Got - EndurancePotion");
-            event.getPlayer().addPotionEffect((new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 72000 , 0)));
-            event.getPlayer().addPotionEffect((new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 72000 , 0)));
+            event.getPlayer().addPotionEffect((new PotionEffect(PotionEffectType.REGENERATION, 36000 , 0)));
+            event.getPlayer().addPotionEffect((new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 12000 , 0)));
             event.getPlayer().addPotionEffect((new PotionEffect(PotionEffectType.JUMP, 72000 , 0)));
             event.getPlayer().addPotionEffect((new PotionEffect(PotionEffectType.SPEED, 72000 , 0)));
         }
