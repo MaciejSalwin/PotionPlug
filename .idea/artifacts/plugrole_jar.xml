@@ -2,7 +2,7 @@
   <artifact type="jar" name="plugrole:jar">
     <output-path>$PROJECT_DIR$/../../Server/plugins</output-path>
     <root id="archive" name="plugrole.jar">
-      <element id="module-output" name="plugrole" />
+      <element id="module-output" name="PotionPlug 0.2v" />
     </root>
   </artifact>
 </component>

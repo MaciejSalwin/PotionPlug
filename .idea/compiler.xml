@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="plugrole" />
+        <module name="PotionPlug 0.2v" />
       </profile>
     </annotationProcessing>
   </component>

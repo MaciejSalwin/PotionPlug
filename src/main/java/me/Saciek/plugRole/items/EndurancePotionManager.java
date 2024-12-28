@@ -21,7 +21,7 @@ public class EndurancePotionManager {
         meta.setDisplayName("§6Endurance Potion");
         List<String> lore = new ArrayList<>();
         lore.add("§8This potion will give you boost to your overall endurance skills such as speed etc");
-        lore.add("§8after that you will have to wait 1.5 hour to use miners potion again");
+        lore.add("§8after that you will have to wait 1 hour to use miners potion again");
         meta.setLore(lore);
         meta.addEnchant(Enchantment.LUCK, 1,false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);

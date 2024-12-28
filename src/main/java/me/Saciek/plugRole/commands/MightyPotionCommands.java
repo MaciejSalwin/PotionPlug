@@ -1,7 +1,6 @@
 package me.Saciek.plugRole.commands;
 
 import me.Saciek.plugRole.items.MightyPotionManager;
-import me.Saciek.plugRole.items.MinersPotionManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -28,10 +27,6 @@ public class MightyPotionCommands implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        if (!this.cooldown.containsKey(player.getUniqueId()) || System.currentTimeMillis() - cooldown.get(player.getUniqueId()) > 3_600_000){
-
-            this.cooldown.put(player.getUniqueId(), System.currentTimeMillis());
-
             if (cmd.getName().equalsIgnoreCase("MightyPotion")) {
                 Inventory inventory = player.getInventory();
                 boolean hasFreeSlot = false;
@@ -52,23 +47,26 @@ public class MightyPotionCommands implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + "You don't have enough diamonds in your inventory. You need 15 diamonds.");
                     return true;
                 }
+                if (!this.cooldown.containsKey(player.getUniqueId()) || System.currentTimeMillis() - cooldown.get(player.getUniqueId()) > 3_600_000){
 
-                diamonds.setAmount(15);
+                    this.cooldown.put(player.getUniqueId(), System.currentTimeMillis());
+
+                    diamonds.setAmount(15);
                 inventory.removeItem(diamonds);
                 inventory.addItem(MightyPotionManager.MightyPotion);
                 player.sendMessage(ChatColor.GREEN + "The MightyPotion has been added to your inventory!");
                 return true;
 
-            }
-        } else {
-            long timeElapsed = System.currentTimeMillis() - cooldown.get(player.getUniqueId());
-            long seconds = (3_600_000 - timeElapsed) /1000;
-            long minutes = (seconds)/ 60;
-            if(seconds > 60) {
-                player.sendMessage(ChatColor.RED + "You have to wait " + minutes + " minutes to buy MightyPotion again");
-            }else{
-                player.sendMessage(ChatColor.RED + "You have to wait " + seconds + " secounds to buy MightyPotion again");
-            }
+            }else {
+                    long timeElapsed = System.currentTimeMillis() - cooldown.get(player.getUniqueId());
+                    long seconds = (3_600_000 - timeElapsed) /1000;
+                    long minutes = (seconds)/ 60;
+                    if(seconds > 60) {
+                        player.sendMessage(ChatColor.RED + "You have to wait " + minutes + " minutes to buy MightyPotion again");
+                    }else{
+                        player.sendMessage(ChatColor.RED + "You have to wait " + seconds + " secounds to buy MightyPotion again");
+                    }
+                }
         }
         return true;
     }

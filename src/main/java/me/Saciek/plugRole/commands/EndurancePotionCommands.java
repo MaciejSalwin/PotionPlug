@@ -28,9 +28,6 @@ public class EndurancePotionCommands implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        if (!this.cooldown.containsKey(player.getUniqueId()) || System.currentTimeMillis() - cooldown.get(player.getUniqueId()) > 3_600_000){
-
-            this.cooldown.put(player.getUniqueId(), System.currentTimeMillis());
 
             if (cmd.getName().equalsIgnoreCase("EndurancePotion")) {
                 Inventory inventory = player.getInventory();
@@ -52,23 +49,26 @@ public class EndurancePotionCommands implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + "You don't have enough gold in your inventory. You need 32 gold ingots.");
                     return true;
                 }
+                if (!this.cooldown.containsKey(player.getUniqueId()) || System.currentTimeMillis() - cooldown.get(player.getUniqueId()) > 3_600_000){
 
-                gold_ingots.setAmount(32);
+                    this.cooldown.put(player.getUniqueId(), System.currentTimeMillis());
+
+                    gold_ingots.setAmount(32);
                 inventory.removeItem(gold_ingots);
                 inventory.addItem(EndurancePotionManager.EndurancePotion);
                 player.sendMessage(ChatColor.GREEN + "The EndurancePotion has been added to your inventory!");
                 return true;
 
-            }
-        } else {
-            long timeElapsed = System.currentTimeMillis() - cooldown.get(player.getUniqueId());
-            long seconds = (3_600_000 - timeElapsed) /1000;
-            long minutes = (seconds)/ 60;
-            if(seconds > 60) {
-                player.sendMessage(ChatColor.RED + "You have to wait " + minutes + " minutes to buy EndurancePotion again");
-            }else{
-                player.sendMessage(ChatColor.RED + "You have to wait " + seconds + " secounds to buy EndurancePotion again");
-            }
+            }else {
+                    long timeElapsed = System.currentTimeMillis() - cooldown.get(player.getUniqueId());
+                    long seconds = (3_600_000 - timeElapsed) /1000;
+                    long minutes = (seconds)/ 60;
+                    if(seconds > 60) {
+                        player.sendMessage(ChatColor.RED + "You have to wait " + minutes + " minutes to buy EndurancePotion again");
+                    }else{
+                        player.sendMessage(ChatColor.RED + "You have to wait " + seconds + " secounds to buy EndurancePotion again");
+                    }
+                }
         }
         return true;
     }

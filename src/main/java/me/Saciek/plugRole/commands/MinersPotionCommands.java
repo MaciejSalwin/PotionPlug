@@ -27,9 +27,7 @@ public class MinersPotionCommands implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        if (!this.cooldown.containsKey(player.getUniqueId()) || System.currentTimeMillis() - cooldown.get(player.getUniqueId()) > 3_600_000){
 
-            this.cooldown.put(player.getUniqueId(), System.currentTimeMillis());
 
             if (cmd.getName().equalsIgnoreCase("MinersPotion")) {
                 Inventory inventory = player.getInventory();
@@ -51,23 +49,25 @@ public class MinersPotionCommands implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + "You don't have enough emeralds in your inventory. You need 12 emeralds.");
                     return true;
                 }
+                if (!this.cooldown.containsKey(player.getUniqueId()) || System.currentTimeMillis() - cooldown.get(player.getUniqueId()) > 3_600_000){
 
+                    this.cooldown.put(player.getUniqueId(), System.currentTimeMillis());
                 emeralds.setAmount(12);
                 inventory.removeItem(emeralds);
                 inventory.addItem(MinersPotionManager.MinersPotion);
                 player.sendMessage(ChatColor.GREEN + "The MinersPotion has been added to your inventory!");
                 return true;
 
-            }
-        } else {
-            long timeElapsed = System.currentTimeMillis() - cooldown.get(player.getUniqueId());
-            long seconds = (3_600_000 - timeElapsed) /1000;
-            long minutes = (seconds)/ 60;
-            if(seconds > 60) {
-                player.sendMessage(ChatColor.RED + "You have to wait " + minutes + " minutes to buy MinersPotion again");
-            }else{
-                player.sendMessage(ChatColor.RED + "You have to wait " + seconds + " secounds to buy MinersPotion again");
-            }
+            }else {
+                    long timeElapsed = System.currentTimeMillis() - cooldown.get(player.getUniqueId());
+                    long seconds = (3_600_000 - timeElapsed) /1000;
+                    long minutes = (seconds)/ 60;
+                    if(seconds > 60) {
+                        player.sendMessage(ChatColor.RED + "You have to wait " + minutes + " minutes to buy MinersPotion again");
+                    }else{
+                        player.sendMessage(ChatColor.RED + "You have to wait " + seconds + " secounds to buy MinersPotion again");
+                    }
+                }
         }
         return true;
         }
